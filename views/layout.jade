@@ -1,0 +1,35 @@
+doctype html
+html
+	head
+		title Paradise City
+		link(rel='stylesheet', href='/stylesheets/materialize.min.css')
+		link(rel="stylesheet",href="https://fonts.googleapis.com/icon?family=Material+Icons")
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		.navbar-fixed
+			nav
+				.nav-wrapper
+					ul#nav-mobile.left.hide-on-med-and-down
+						li
+							a(href='/') Home
+						li
+							a(href='/contact')
+								i.material-icons contact_phone
+						li
+							a(href='/users/reviews') Reviews
+						li
+							a(href='/users/hotels') View Hotels
+						if !user
+							li.right
+								a(href='/users/register') Register
+						if user
+							li
+								a(href='/users/profile') Profile
+						if user
+							li
+								a(href='/users/logout') Logout
+		!= messages()
+		script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+		script(src="/js/materialize.min.js")
+		script(src="/js/main.js")
+		block content

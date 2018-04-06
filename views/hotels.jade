@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/materialize.min.css')
+    link(rel="stylesheet",href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    a(href='/') Return to Home
+    br
+    br
+
+    if hotels
+      each hotel,i in hotels
+        #bordering
+          a(href='/users/hotels/'+hotel._id) #{hotel.hotel_name}
+          p likes #{hotel.pasand_count},cost_per_room: #{hotel.cost}
+          if user
+            form(method='post',action='/users/hotels')
+              .form-group
+                input.form-control(name='hotel_id',type='hidden',value=hotel._id)
+              input.btn(name='submit',type='submit',value='Love')
+      form(method='post',action='/users/hotels/sort')
+        input.btn(name='sort_by_likes',type='submit',value='sort by likes')
+      form(method='post',action='/users/hotels/range')
+        .form-group Start
+          input.form-control(name='start')
+        .form-group End
+          input.form-control(name='end')
+        input.btn(name='sort_by_range',type='submit',value='sort by range')
+        br
+    script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+    script(src="/js/materialize.min.js")
+    script(src="/js/main.js")

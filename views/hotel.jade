@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    link(rel='stylesheet',href='/stylesheets/style.css')
+    a(href='/') Return to Home
+
+    p Name : #{hotel.hotel_name}
+    p Email : #{hotel.email}
+    p Address : #{hotel.hotel_location}
+    p Rooms : #{hotel.rooms}
+
+    if user
+      a(href='/users/bookroom/'+hotel._id) BookRoom
+    if !user
+      a(href='/users/login') Login to book room
+
+    script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+    script(src="/js/materialize.min.js")
+    script(src="/js/main.js")

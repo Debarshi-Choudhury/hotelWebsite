@@ -1,0 +1,35 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='/stylesheets/materialize.min.css')
+		link(rel="stylesheet",href="https://fonts.googleapis.com/icon?family=Material+Icons")
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+		a(href='/') HOME
+		br
+		br
+
+		#bordering_user
+			p Hello #{user.name}
+
+		br
+
+		if rooms
+			each room,i in rooms
+				#bordering
+					p Visited #{room.hotel_name}
+					p Visit Date #{room.visit_date}
+					p Leave Date #{room.leave_date}
+					br
+					if room.cancel
+						form(method='post',action='/users/profile')
+							.form-group
+								input.form-control(name='hotel_name',type='hidden',value=room.hotel_name)
+							.form-group
+								input.form-control(name='room_id',type='hidden',value=room._id)
+							input.btn(name='submit',type='submit',value='Cancel booking')
+				br
+
+		script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+		script(src="/js/materialize.min.js")
+		script(src="/js/main.js")

@@ -1,0 +1,43 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+		a(href='/') Return to HOME
+		h1 Reviews
+
+		if reviews
+			each review, i in reviews
+				#bordering
+					li #{review.body}  by #{review.username}
+					if admin
+						form(method='post',action='/users/reviews')
+							.form-group
+								input.form-control(name='kya_karu',type='hidden',value="delete")
+							.form-group
+								input.form-control(name='review_id',type='hidden',value=review._id)
+							input.btn(name='delete',type='submit',value='Delete')
+				br
+		br
+		if errors
+			each error,i in errors
+				li #{error.msg}
+
+		form(method='post',action='/users/reviews')
+			if user
+				p Please enter review
+				.form-group
+					input.form-control(name='kya_karu',type='hidden',value="add")
+				.form-group
+					label Review
+					input.form-control(name='body')
+				input.btn(name='submit',type='submit',value='Submit')
+			if !user
+				p Log in to post your review
+
+
+
+		script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+		script(src="/js/materialize.min.js")
+		script(src="/js/main.js")

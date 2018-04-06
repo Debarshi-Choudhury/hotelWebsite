@@ -1,0 +1,47 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+		a(href='/') Back to Home
+		h1 Book Room
+		p Please book your room using the form below
+
+		p #{hotel.hotel_name}
+
+		ul.errors
+			if errors
+				each error,i in errors
+					li.alert #{error.msg}
+
+		form(method='post',action='/users/bookroom',enctype='url-encoded')
+			.form-group
+				input.form-control(name='hotel_id',type='hidden',value=hotel._id)
+			.form-group
+				input.form-control(name='hotel_name',type='hidden',value=hotel.hotel_name)
+			.form-group
+				label Number of adults
+				input.form-control(name='cnt_adult',type='number',value=cnt_adult)
+			.form-group
+				label Number of children
+				input.form-control(name='cnt_child',type='number',value=cnt_child)
+			.form-group
+				label Date of Visiting
+				input.form-control(name='visit_date',type='date',value=visit_date)
+			.form-group
+				label Date of Leaving
+				input.form-control(name='leave_date',type='date',value=leave_date)
+			.form-group
+				label Number of Rooms
+				input.form-control(name='cnt_room',type='number',value=cnt_room)
+			.form-group
+				input.form-control(name='valid',type='hidden',value="available")
+			.form-group
+				input.form-control(name='cancel',type='hidden',value="yes")
+			.form-group
+				label Type of Room
+				select.form-control(name='room_type')
+					option(value="AC") AC
+					option(value="NON AC") NON AC
+			input.btn(name='submit',type='submit',value='Check Availability')
